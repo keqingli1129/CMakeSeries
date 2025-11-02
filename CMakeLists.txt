@@ -10,4 +10,13 @@ set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}/static libs")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}")
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
 
+
+add_library(console SHARED consolelib/console.cpp)
+target_include_directories(console PUBLIC "${CMAKE_SOURCE_DIR}/consolelib")
+
+find_package(SDL2 REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS})
+
 add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} console)
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
