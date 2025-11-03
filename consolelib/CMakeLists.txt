@@ -1,10 +1,11 @@
 cmake_minimum_required(VERSION 3.10.0)
 project(console VERSION 0.1.0 LANGUAGES C CXX)
-
+set(SourceFiles
+    src/console.cpp
+)
 # Create the console library
 add_library(console SHARED
-    src/console.cpp
-    include/console.hpp
+    ${SourceFiles}
 )
 
 # Set include directories for the library
