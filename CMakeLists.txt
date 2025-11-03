@@ -14,7 +14,14 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
 add_library(console SHARED consolelib/console.cpp)
 target_include_directories(console PUBLIC "${CMAKE_SOURCE_DIR}/consolelib")
 target_compile_definitions(console PRIVATE BUILDING_CONSOLE_DLL)
-
+# Use FetchContent to download SDL2
+include(FetchContent)
+FetchContent_Declare(
+    SDL2
+    GIT_REPOSITORY https://github.com/libsdl-org/SDL.git
+    GIT_TAG release-2.28.5  # Use a stable release
+)
+FetchContent_MakeAvailable(SDL2)
 # Explicitly control where console library files go
 # set_target_properties(console PROPERTIES
 #     ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}"
@@ -25,5 +32,5 @@ target_compile_definitions(console PRIVATE BUILDING_CONSOLE_DLL)
 
 add_executable(${PROJECT_NAME} main.cpp)
 target_link_libraries(${PROJECT_NAME} console)
-
+target_link_libraries(${PROJECT_NAME} SDL2::SDL2 SDL2::SDL2main)
 

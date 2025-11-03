@@ -2,7 +2,8 @@
 #include <vector>
 #include <algorithm>
 #include "console.hpp"
-
+#define SDL_MAIN_HANDLED
+#include <SDL.h>
 
 int main() {
     // Create a vector of integers
@@ -18,5 +19,6 @@ int main() {
     }
     std::cout << std::endl;
     Console::print("Hello CMake");
+    SDL_Init(SDL_INIT_VIDEO);
     return 0;
 }
