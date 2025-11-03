@@ -14,9 +14,10 @@ if(MSVC)
     set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
     set(BUILD_SHARED_LIBS ON)
 endif()
-if(NOT TARGET console)
-    add_subdirectory(consolelib)
-endif()
+set(SubProjects 
+    consolelib
+)
+add_executable(${PROJECT_NAME} main.cpp)
 
 # Use FetchContent to download SDL2
 include(FetchContent)
@@ -33,8 +34,12 @@ FetchContent_MakeAvailable(SDL2)
 #     RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}"
 # )
 
+foreach(SubProject ${SubProjects})
+    if(NOT TARGET ${SubProject})
+        add_subdirectory(${SubProject})
+    endif()
+endforeach()
 
-add_executable(${PROJECT_NAME} main.cpp)
-target_link_libraries(${PROJECT_NAME} console)
-target_link_libraries(${PROJECT_NAME} SDL2::SDL2 SDL2::SDL2main)
+# Link the console library to the main executable
+target_link_libraries(${PROJECT_NAME} console SDL2::SDL2 SDL2::SDL2main)
 
