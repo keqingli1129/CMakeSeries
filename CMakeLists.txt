@@ -9,8 +9,14 @@ set (FullOutputDir "${CMAKE_SOURCE_DIR}/bin/${CMAKE_SYSTEM_NAME}${OSBitness}/${C
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}/static libs")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}")
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
-
-add_subdirectory(consolelib)
+if(MSVC)
+    add_compile_options(/std:c++latest)
+    set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+    set(BUILD_SHARED_LIBS ON)
+endif()
+if(NOT TARGET console)
+    add_subdirectory(consolelib)
+endif()
 
 # Use FetchContent to download SDL2
 include(FetchContent)

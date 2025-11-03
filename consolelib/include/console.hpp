@@ -1,6 +1,4 @@
-#ifndef __CONSOLE_HPP__
-#define __CONSOLE_HPP__
-
+#pragma once
 #ifdef _WIN32
     #ifdef BUILDING_CONSOLE_DLL
         #define CONSOLE_API __declspec(dllexport)
@@ -17,4 +15,3 @@ class Console
     static CONSOLE_API void print(const char* text);
 };
 
-#endif // __CONSOLE_HPP__
