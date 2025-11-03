@@ -38,6 +38,7 @@ foreach(SubProject ${SubProjects})
     if(NOT TARGET ${SubProject})
         add_subdirectory(${SubProject})
     endif()
+    target_link_directories(${PROJECT_NAME} PRIVATE {SubProject})
 endforeach()
 
 # Link the console library to the main executable
