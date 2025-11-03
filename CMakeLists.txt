@@ -10,10 +10,8 @@ set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}/static libs")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}")
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
 
+add_subdirectory(consolelib)
 
-add_library(console SHARED consolelib/console.cpp)
-target_include_directories(console PUBLIC "${CMAKE_SOURCE_DIR}/consolelib")
-target_compile_definitions(console PRIVATE BUILDING_CONSOLE_DLL)
 # Use FetchContent to download SDL2
 include(FetchContent)
 FetchContent_Declare(
