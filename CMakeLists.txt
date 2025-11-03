@@ -16,11 +16,11 @@ target_include_directories(console PUBLIC "${CMAKE_SOURCE_DIR}/consolelib")
 target_compile_definitions(console PRIVATE BUILDING_CONSOLE_DLL)
 
 # Explicitly control where console library files go
-set_target_properties(console PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}"
-    LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}"
-    RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}"
-)
+# set_target_properties(console PROPERTIES
+#     ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}"
+#     LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}"
+#     RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}"
+# )
 
 
 add_executable(${PROJECT_NAME} main.cpp)
