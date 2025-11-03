@@ -1,7 +1,7 @@
 #include "console.hpp"
 #include <iostream>
 
-void Console::print(const char* text)
+CONSOLE_API void Console::print(const char* text)
 {
     std::cout << text << std::endl;
 }
